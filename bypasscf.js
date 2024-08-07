@@ -20,6 +20,10 @@ if (fs.existsSync(".env.local")) {
   for (const k in envConfig) {
     process.env[k] = envConfig[k];
   }
+} else {
+  console.log(
+    "Using .env file to supply config environment variables, you can create a .env.local file to overwrite defaults, it doesn't upload to git"
+  );
 }
 // 从环境变量解析用户名和密码
 const usernames = process.env.USERNAMES.split(",");
@@ -224,7 +228,10 @@ async function login(page, username, password) {
       page.click("#login-button"), // 点击登录按钮触发跳转
     ]); //注意如果登录失败，这里会一直等待跳转，导致脚本执行失败 这点四个月之前你就发现了结果今天又遇到（有个用户遇到了https://linux.do/t/topic/169209/82），但是你没有在这个报错你提示我8.5
   } catch (error) {
-    console.error("Navigation timed out in login.请检查用户名是否正确(注意密码中是否有特殊字符,需要外面加上双引号指明这是字符串):", error);
+    console.error(
+      "Navigation timed out in login.请检查用户名密码是否正确(注意密码中是否有特殊字符,需要外面加上双引号指明这是字符串，如果密码里面有双引号则需要转义), 此外GitHub action不需要加上引号:",
+      error
+    );
     throw new Error("Navigation timed out in login.");
   }
   await delayClick(1000);

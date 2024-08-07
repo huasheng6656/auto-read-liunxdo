@@ -40,15 +40,14 @@ npm install
 node .\bypasscf.js
 ```
 
-## 使用方法三：GitHub Action 每天 0 点阅读
-
-(可自行修改启动时间和持续时间，代码.github\workflows\cron_bypassCF.yaml)
+## 使用方法三：GitHub Action 每天 4 点阅读
+#### 每天运行，每次二十分钟(可自行修改启动时间和持续时间，代码.github\workflows\cron_bypassCF.yaml)
 
 ### 1. fork 仓库
 
 ### 2.设置环境变量
 
-在 GitHub action 的 secrets 设置用户名密码（变量名参考.env 中给出的）（.env 里面设置用户名密码在这里无效）
+在 GitHub action 的 secrets 设置用户名密码（变量名参考.env 中给出的），未设置则会使用.env文件中定义的
 ![alt text](image2.png)
 
 ### 3.启动 workflow
